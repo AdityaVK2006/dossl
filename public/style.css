@@ -1,14 +1,16 @@
 :root {
   color-scheme: light;
-  --canvas: #f4f6f3;
-  --paper: #ffffff;
-  --ink: #1c2925;
-  --muted: #74817a;
-  --line: #e7ece8;
-  --green: #25664f;
-  --green-dark: #194c3a;
-  --green-soft: #eaf3ee;
-  --coral: #d47761;
+  --canvas: #f3f5ed;
+  --paper: #fffdf7;
+  --ink: #302d27;
+  --muted: #7b786c;
+  --line: #e9e4d8;
+  --green: #4c7651;
+  --green-dark: #2f573b;
+  --green-soft: #e8efdf;
+  --coral: #c9654c;
+  --chikoo-flesh: #d8a25d;
+  --chikoo-seed: #4c372b;
   font-family: "DM Sans", sans-serif;
   color: var(--ink);
   background: var(--canvas);
@@ -24,9 +26,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background:
-    radial-gradient(ellipse at 15% 0%, rgba(201, 224, 210, 0.42), transparent 34rem),
-    var(--canvas);
+  background: linear-gradient(135deg, #f3f5ed 0%, #f5f2e8 70%, #f0e8d9 100%);
 }
 
 button,
@@ -65,15 +65,29 @@ input {
 }
 
 .wordmark-mark {
+  position: relative;
   display: grid;
   width: 29px;
   height: 29px;
   place-items: center;
-  border-radius: 9px 9px 9px 3px;
-  background: var(--green);
-  color: white;
+  border-radius: 48% 48% 42% 42%;
+  background: var(--chikoo-flesh);
+  box-shadow: inset 0 -4px 0 rgba(76, 55, 43, 0.1);
+  color: var(--chikoo-seed);
   font-family: "DM Serif Display", Georgia, serif;
   font-size: 18px;
+}
+
+.wordmark-mark::after {
+  position: absolute;
+  top: 1px;
+  right: -2px;
+  width: 9px;
+  height: 6px;
+  border-radius: 100% 0 100% 0;
+  background: var(--green);
+  content: "";
+  transform: rotate(-22deg);
 }
 
 .topbar-note,
@@ -85,10 +99,10 @@ input {
 .todo-panel {
   overflow: hidden;
   padding: 48px 54px 23px;
-  border: 1px solid rgba(222, 230, 224, 0.8);
+  border: 1px solid rgba(222, 215, 198, 0.8);
   border-radius: 10px;
   background: var(--paper);
-  box-shadow: 0 18px 55px rgba(34, 61, 47, 0.055);
+  box-shadow: 0 18px 55px rgba(76, 55, 43, 0.07);
 }
 
 .eyebrow {
@@ -107,6 +121,7 @@ p {
 
 h1 {
   margin-bottom: 9px;
+  color: var(--chikoo-seed);
   font-family: "DM Serif Display", Georgia, serif;
   font-size: 42px;
   font-weight: 400;
@@ -123,15 +138,15 @@ h1 {
   display: flex;
   gap: 10px;
   padding: 7px;
-  border: 1px solid #dce5df;
+  border: 1px solid #e4dfd2;
   border-radius: 7px;
-  background: #fbfcfb;
+  background: #fffefa;
   transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 .add-form:focus-within {
-  border-color: #7ca892;
-  box-shadow: 0 0 0 3px rgba(37, 102, 79, 0.09);
+  border-color: #8aa982;
+  box-shadow: 0 0 0 3px rgba(76, 118, 81, 0.11);
 }
 
 .add-form input {
@@ -319,8 +334,8 @@ h1 {
 }
 
 .priority-medium {
-  background: var(--green-soft);
-  color: var(--green-dark);
+  background: #f6e8cf;
+  color: var(--chikoo-seed);
 }
 
 .priority-high {
@@ -364,9 +379,10 @@ h1 {
   height: 34px;
   margin-bottom: 13px;
   place-items: center;
-  border: 1px solid #dce8df;
+  border: 1px solid #ead8b7;
   border-radius: 50%;
-  color: var(--green);
+  background: #fbf3e4;
+  color: var(--chikoo-seed);
   font-size: 21px;
   font-weight: 300;
 }
@@ -415,7 +431,7 @@ h1 {
 }
 
 :focus-visible {
-  outline: 2px solid #4f8b6d;
+  outline: 2px solid #6f986c;
   outline-offset: 3px;
 }
 
