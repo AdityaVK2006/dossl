@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f6f3">
+    <title>Daymark | Todo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="wordmark" href="/" aria-label="Daymark home">
+          <span class="wordmark-mark" aria-hidden="true">D</span>
+          <span>daymark</span>
+        </a>
+        <span class="topbar-note">A little more intentional</span>
+      </header>
+
+      <section class="todo-panel" aria-labelledby="page-title">
+        <div class="intro">
+          <p class="eyebrow">YOUR SPACE, YOUR PACE</p>
+          <h1 id="page-title">Make today count.</h1>
+          <p class="intro-copy">One thing at a time is still progress.</p>
+        </div>
+
+        <form class="add-form" action="/todos" method="post">
+          <label class="visually-hidden" for="todo-title">Add a task</label>
+          <input
+            id="todo-title"
+            name="title"
+            type="text"
+            maxlength="120"
+            placeholder="What needs your attention?"
+            autocomplete="off"
+            required
+          >
+          <button class="add-button" type="submit"><span aria-hidden="true">+</span> Add task</button>
+        </form>
+        <% if (error) { %>
+          <p class="form-error" role="alert"><%= error %></p>
+        <% } %>
+
+        <div class="list-heading">
+          <div>
+            <h2>Your tasks</h2>
+            <p><%= counts.active %> left to do</p>
+          </div>
+          <nav class="filters" aria-label="Filter tasks">
+            <% ['all', 'active', 'completed'].forEach((option) => { %>
+              <a
+                class="filter-link <%= filter === option ? 'is-selected' : '' %>"
+                href="/?filter=<%= option %>"
+                <% if (filter === option) { %>aria-current="page"<% } %>
+              >
+                <%= option[0].toUpperCase() + option.slice(1) %>
+                <span><%= counts[option] %></span>
+              </a>
+            <% }) %>
+          </nav>
+        </div>
+
+        <% if (todos.length) { %>
+          <ul class="todo-list">
+            <% todos.forEach((todo) => { %>
+              <li class="todo-item <%= todo.completed ? 'is-completed' : '' %>">
+                <form action="/todos/<%= todo.id %>/toggle" method="post">
+                  <button
+                    class="toggle-button"
+                    type="submit"
+                    aria-label="<%= todo.completed ? 'Mark as active' : 'Mark as complete' %>: <%= todo.title %>"
+                  ><span aria-hidden="true"></span></button>
+                </form>
+                <span class="todo-title"><%= todo.title %></span>
+                <form action="/todos/<%= todo.id %>/delete" method="post">
+                  <button class="remove-button" type="submit" aria-label="Remove: <%= todo.title %>">Remove</button>
+                </form>
+              </li>
+            <% }) %>
+          </ul>
+        <% } else { %>
+          <div class="empty-state">
+            <span class="empty-mark" aria-hidden="true">+</span>
+            <p class="empty-title"><%= filter === 'all' ? 'A fresh page.' : `No ${filter} tasks.` %></p>
+            <p class="empty-copy"><%= filter === 'all' ? 'Add a task above and give your day a starting point.' : 'Try another filter or add something new.' %></p>
+          </div>
+        <% } %>
+
+        <footer class="list-footer">
+          <span><%= counts.all %> <%= counts.all === 1 ? 'task' : 'tasks' %> total</span>
+          <span class="footer-dot" aria-hidden="true"></span>
+          <span>Keep it moving</span>
+        </footer>
+      </section>
+
+      <footer class="page-footer">Small steps make a good day.</footer>
+    </main>
+  </body>
+</html>
