@@ -56,5 +56,5 @@ app.post('/todos/:id/delete', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Daymark is running at http://localhost:${port}`);
+  console.log(`Chikoo is running at http://localhost:${port}`);
 });
