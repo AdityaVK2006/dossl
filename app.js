@@ -6,6 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const todos = [];
 const filters = new Set(['all', 'active', 'completed']);
+const priorities = new Set(['low', 'medium', 'high']);
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -34,10 +35,11 @@ app.get('/', (req, res) => {
 
 app.post('/todos', (req, res) => {
   const title = typeof req.body.title === 'string' ? req.body.title.trim() : '';
+  const priority = priorities.has(req.body.priority) ? req.body.priority : 'medium';
 
   if (!title) return res.redirect('/?error=empty');
 
-  todos.unshift({ id: randomUUID(), title: title.slice(0, 120), completed: false });
+  todos.unshift({ id: randomUUID(), title: title.slice(0, 120), priority, completed: false });
   res.redirect('/');
 });
 

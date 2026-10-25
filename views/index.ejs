@@ -38,6 +38,12 @@
             autocomplete="off"
             required
           >
+          <label class="visually-hidden" for="todo-priority">Priority</label>
+          <select id="todo-priority" name="priority" class="priority-select">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
           <button class="add-button" type="submit"><span aria-hidden="true">+</span> Add task</button>
         </form>
         <% if (error) { %>
@@ -75,6 +81,7 @@
                   ><span aria-hidden="true"></span></button>
                 </form>
                 <span class="todo-title"><%= todo.title %></span>
+                  <span class="priority-badge priority-<%= todo.priority %>"><%= todo.priority[0].toUpperCase() + todo.priority.slice(1) %></span>
                 <form action="/todos/<%= todo.id %>/delete" method="post">
                   <button class="remove-button" type="submit" aria-label="Remove: <%= todo.title %>">Remove</button>
                 </form>

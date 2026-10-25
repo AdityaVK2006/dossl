@@ -149,6 +149,19 @@ h1 {
   color: #9aa59e;
 }
 
+.priority-select {
+  flex: 0 0 auto;
+  width: 92px;
+  padding: 0 7px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  outline: 0;
+  background: transparent;
+  color: #58675e;
+  cursor: pointer;
+  font-size: 12px;
+}
+
 .add-button {
   display: inline-flex;
   flex: 0 0 auto;
@@ -290,6 +303,29 @@ h1 {
   color: #33413a;
   font-size: 13px;
   line-height: 1.5;
+}
+
+.priority-badge {
+  flex: 0 0 auto;
+  padding: 4px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.priority-low {
+  background: #f0f2ef;
+  color: #68766d;
+}
+
+.priority-medium {
+  background: var(--green-soft);
+  color: var(--green-dark);
+}
+
+.priority-high {
+  background: #faeee9;
+  color: #a54e38;
 }
 
 .is-completed .todo-title {
